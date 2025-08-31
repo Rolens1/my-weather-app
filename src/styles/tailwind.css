@@ -30,4 +30,7 @@
   .theme-clear { @apply bg-gradient-to-b from-sky-100 to-white dark:from-sky-900/40 dark:to-zinc-950; }
   .theme-rain  { @apply bg-gradient-to-b from-blue-100 to-white dark:from-blue-900/30 dark:to-zinc-950; }
   .theme-night { @apply bg-gradient-to-b from-indigo-950 to-zinc-950; }
+  .theme-cloud { @apply bg-gradient-to-b from-slate-100 to-white dark:from-slate-900/40 dark:to-zinc-950; }
+  .theme-snow  { @apply bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-900/20 dark:to-zinc-950; }
+  .theme-fog   { @apply bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-800/40 dark:to-zinc-950; }
 }

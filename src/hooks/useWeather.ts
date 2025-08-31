@@ -76,7 +76,15 @@ export function useWeather() {
     if (cached) {
       setForecast(cached);
       setStatus("ready");
-      return;
+      // this is to get the instant reload feel on cached cities
+      getForcast(city.latitude, city.longitude)
+        .then((fresh) => {
+          setForecast(fresh);
+          setJSON(key, fresh, 10 * 60 * 1000);
+        })
+        .catch(() => {});
+
+      return cached;
     }
 
     if (forecastCtl.current) forecastCtl.current.abort();
