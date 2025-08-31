@@ -109,7 +109,7 @@ export default function SearchBox({
                   onSelect(r); // preventing input blur?
                 }}
               >
-                <span className="font-medium">{r.name}</span>
+                <span className="font-medium">{r.name}</span>,{" "}
                 {r.country ? (
                   <span className="text-zinc-500">{r.country}</span>
                 ) : null}
