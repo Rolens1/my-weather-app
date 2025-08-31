@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// this is what I expect to receive from the apis
 // Geocoding schemas
 export const GeoItem = z.object({
   id: z.number().optional(),
