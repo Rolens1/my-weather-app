@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base rhythm + colors */
+@layer base {
+  :root {
+    --bg: 255 255 255;
+    --fg: 17 24 39;
+  }
+  .dark {
+    --bg: 9 9 11;
+    --fg: 229 231 235;
+  }
+  html, body, #root { height: 100%; }
+  body {
+    @apply bg-[rgb(var(--bg))] text-[rgb(var(--fg))] antialiased;
+  }
+}
+
+/* Reusable card */
+@layer components {
+  .card {
+    @apply rounded-2xl shadow-card border border-black/5 bg-white/70 dark:bg-zinc-900/60 backdrop-blur p-4;
+  }
+}
+
+/* Weather/time theme helpers */
+@layer utilities {
+  .theme-clear { @apply bg-gradient-to-b from-sky-100 to-white dark:from-sky-900/40 dark:to-zinc-950; }
+  .theme-rain  { @apply bg-gradient-to-b from-blue-100 to-white dark:from-blue-900/30 dark:to-zinc-950; }
+  .theme-night { @apply bg-gradient-to-b from-indigo-950 to-zinc-950; }
+}

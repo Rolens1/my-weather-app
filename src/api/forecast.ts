@@ -13,7 +13,7 @@ export async function getForcast(
   url.searchParams.set("longitude", String(long));
   url.searchParams.set(
     "current",
-    "temperature_2m,apparent,temperature,weather_code,wind_speed_10m"
+    "temperature_2m,apparent_temperature,temperature,weather_code,wind_speed_10m"
   );
   url.searchParams.set(
     "daily",
@@ -25,6 +25,6 @@ export async function getForcast(
   const res = await fetch(url, { signal });
   if (!res.ok) throw new Error(`Forecast failed ${res.status}`);
 
-  const parsed = ForecastResponse.parse(await res.json);
+  const parsed = ForecastResponse.parse(await res.json());
   return normalizedForcast(parsed);
 }
