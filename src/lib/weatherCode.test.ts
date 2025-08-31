@@ -14,3 +14,12 @@ describe("weatherCode", () => {
     expect(themeFor(3, 21)).toBe("theme-night"); // night override
   });
 });
+
+describe("themeFor", () => {
+  it("maps rain codes to rain theme by day", () => {
+    expect(themeFor(61, 14)).toBe("theme-rain");
+  });
+  it("forces night theme at night", () => {
+    expect(themeFor(3, 21)).toBe("theme-night");
+  });
+});

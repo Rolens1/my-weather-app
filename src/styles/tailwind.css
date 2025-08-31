@@ -34,3 +34,14 @@
   .theme-snow  { @apply bg-gradient-to-b from-indigo-50 to-white dark:from-indigo-900/20 dark:to-zinc-950; }
   .theme-fog   { @apply bg-gradient-to-b from-zinc-100 to-white dark:from-zinc-800/40 dark:to-zinc-950; }
 }
+@layer utilities {
+  @keyframes noiseMove { to { transform: translate3d(-10%, -10%, 0); } }
+  .rain-overlay::after {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: .25;
+    animation: noiseMove 6s linear infinite;
+  }
+}

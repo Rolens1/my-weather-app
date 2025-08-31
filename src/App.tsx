@@ -6,6 +6,9 @@ import { useUnits } from "./hooks/useUnits";
 import { themeFor, wxInfo } from "./lib/weatherCode";
 import ErrorState from "./components/ErrorState";
 import { CardSkeleton, ForecastSkeleton } from "./components/Skeleton";
+import { useFavorites } from "./hooks/useFavorites";
+import FavoriteButton from "./components/FavoriteButton";
+import FavoritesStrip from "./components/FavoritesStrip";
 
 export default function App() {
   const w = useWeather();
@@ -22,8 +25,14 @@ export default function App() {
     if (w.selected) w.selectCity(w.selected);
   };
 
+  const fav = useFavorites(5);
+
   return (
-    <div className={`min-h-screen ${theme} p-6 transition-colors duration-500`}>
+    <div
+      className={`min-h-screen ${theme} ${
+        /theme-rain/.test(theme) ? "rain-overlay" : ""
+      } p-6 transition-colors duration-500`}
+    >
       <div className="mx-auto grid max-w-3xl gap-4">
         <h1 className="text-3xl font-semibold">Weather App</h1>
 
@@ -38,10 +47,24 @@ export default function App() {
               onSelect={w.selectCity}
             />
           </div>
+
           <button onClick={toggle} className="rounded-xl border px-3 py-2">
             {units === "metric" ? "°C" : "°F"}
           </button>
         </div>
+        <FavoritesStrip
+          items={fav.favorites}
+          onSelect={(f) =>
+            w.selectCity({
+              name: f.name,
+              country: f.country,
+              latitude: f.latitude,
+              longitude: f.longitude,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            } as any)
+          }
+          onRemove={fav.removeFavorite}
+        />
 
         {w.status === "error" && (
           <ErrorState
@@ -65,6 +88,17 @@ export default function App() {
             </div>
             <WeatherCard city={w.selected} data={w.forecast} units={units} />
             <ForecastList data={w.forecast} units={units} />
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">
+                {w.selected?.name}
+                {w.selected?.country ? `, ${w.selected.country}` : ""}
+              </h2>
+              <FavoriteButton
+                city={w.selected}
+                isFavorite={fav.isFavorite}
+                toggleFavorite={fav.toggleFavorite}
+              />
+            </div>
           </>
         )}
       </div>
