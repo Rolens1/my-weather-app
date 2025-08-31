@@ -11,6 +11,7 @@
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
+  "engines": { "node": ">=18 <=20" },
   "dependencies": {
     "@tanstack/react-query": "^5.85.6",
     "clsx": "^2.1.1",
