@@ -42,6 +42,7 @@ describe("SearchBox", () => {
       />
     );
     const input = screen.getByRole("combobox");
+    fireEvent.focus(input);
     fireEvent.keyDown(input, { key: "ArrowDown" });
     fireEvent.keyDown(input, { key: "Enter" });
     expect(onSelect).toHaveBeenCalledWith(results[0]);
